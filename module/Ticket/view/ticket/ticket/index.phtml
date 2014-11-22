@@ -1,0 +1,27 @@
+<?php
+$title = 'My Tickets';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('ticket', array('action'=>'add'));?>">Add new ticket</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>User ID</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach($tickets as $ticket) : ?>
+    <tr>
+        <td><?php echo $this->escapeHtml($ticket->title);?></td>
+        <td><?php echo $this->escapeHtml($ticket->userId);?></td>
+        <td>
+            <a href="<?php echo $this->url('ticket', array('action'=>'edit', 'id' => $ticket->id));?>">Edit</a>
+            <a href="<?php echo $this->url('ticket', array('action'=>'delete', 'id' => $ticket->id));?>">Delete</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
